@@ -132,7 +132,7 @@ app.put('/api/itens/:nomeItem', (req, res) => {
       return res.status(404).json({ error: `Item com nome '${nomeItem}' não encontrado` });
     }
 
-    console.error('rota /api/itens utilizada');
+    console.error('rota /api/itens/:nomeItem utilizada');
 
     res.json({ message: 'Patrocinador modificado com sucesso' });
   });
