@@ -111,6 +111,7 @@ app.get('/api/itens', (req, res) => {
       console.error('Erro ao obter dados:', err);
       return res.status(500).json({ error: 'Erro ao obter dados' });
     }
+    console.error('rota /api/itens utilizada');
     res.json(rows);
   });
 });
@@ -130,6 +131,8 @@ app.put('/api/itens/:nomeItem', (req, res) => {
     if (this.changes === 0) {
       return res.status(404).json({ error: `Item com nome '${nomeItem}' não encontrado` });
     }
+
+    console.error('rota /api/itens utilizada');
 
     res.json({ message: 'Patrocinador modificado com sucesso' });
   });
