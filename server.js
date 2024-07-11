@@ -8,6 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const dbFilePath = path.join(__dirname, 'data', 'itens.db');
 
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 // Middleware para permitir requisições de diferentes origens (CORS)
 app.use(cors());
 
