@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const dbFilePath = path.join(__dirname, 'data', 'itens.db');
 
 app.get('/health', (req, res) => {
-  // console.log('Saúde Ok');
+  console.log('Saúde Ok');
   res.status(200).send('OK');
 });
 
