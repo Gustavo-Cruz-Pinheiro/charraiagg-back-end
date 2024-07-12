@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const dbFilePath = path.join(__dirname, 'data', 'itens.db');
 
 app.get('/health', (req, res) => {
-  console.log('Saúde Ok');
+  // console.log('Saúde Ok');
   res.status(200).send('OK');
 });
 
@@ -18,6 +18,12 @@ app.use(cors());
 
 // Middleware para fazer parse do corpo das requisições como JSON
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log(`Requisição recebida na API do IP: ${clientIp}`);
+  next();
+});
 
 // Conectar ao banco de dados SQLite
 const db = new sqlite3.Database(dbFilePath, (err) => {
@@ -112,7 +118,7 @@ app.get('/api/itens', (req, res) => {
       console.error('Erro ao obter dados:', err);
       return res.status(500).json({ error: 'Erro ao obter dados' });
     }
-    console.log('rota /api/itens utilizada por ' + req.ip);
+    // console.log('rota /api/itens utilizada');
     res.json(rows);
   });
 });
@@ -133,7 +139,7 @@ app.put('/api/itens/:nomeItem', (req, res) => {
       return res.status(404).json({ error: `Item com nome '${nomeItem}' não encontrado` });
     }
 
-    console.log('rota /api/itens/:nomeItem utilizada' + req.ip);
+    // console.log('rota /api/itens/:nomeItem utilizada');
 
     res.json({ message: 'Patrocinador modificado com sucesso' });
   });
