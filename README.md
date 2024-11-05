@@ -10,7 +10,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 * Node;
 * JavaScript;
 * SQLite3;
-* Body-Parser;
 * Cors;
 * Express; e
 * VSCode.
